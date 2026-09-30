@@ -1,0 +1,13 @@
+# wire-uplink.conf — optional per-device overrides.
+# Copy to $MODDIR/wire-uplink.conf (module dir) or /data/local/tmp/wire-uplink.conf
+# and edit. The module discovers everything automatically; set a key ONLY to
+# force a value a device gets wrong. Fields:
+#   UDC       usb controller node name, e.g. a600000.dwc3
+#   GADGET    configfs gadget root, e.g. /config/usb_gadget/g1
+#   CFG       active config dir, e.g. /config/usb_gadget/g1/configs/b.1
+#   NCM       ncm function instance dir, e.g. /config/usb_gadget/g1/functions/ncm.wire
+#   INTERVAL  poll seconds (default 5)
+#   HAL1 HAL2 USB HAL service names to freeze (default android.hardware.usb.*)
+
+# UDC=a600000.dwc3
+# INTERVAL=5

@@ -1,0 +1,6 @@
+id=android17tbnetbridge
+name=TBNetBridge wire-uplink (gadget NCM uplink)
+version=v0.3.0
+versionCode=4
+author=ebowwa
+description=USB NCM wire-uplink: serve the phone's internet over the USB-C/TB5 wire from a macOS TBNetBridge gateway (the mini). Freezes the gadget HAL, wires a self-owned NCM function (qmult=32), rebinds the UDC, re-arms on boot and replug, 3-strike adb fallback. Auto-detects UDC/gadget/config; diagnose.sh validates new devices; per-device conf overrides. Root only; dwc3+configfs verified on Android 17 / Pixel 10a.
