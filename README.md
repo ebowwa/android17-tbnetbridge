@@ -130,6 +130,14 @@ service on the USB port).
 - v0.1.0 — first verified release (Sep 30, 2026): ~12 s replug re-arm,
   ~400 Mbps over the wire, 3-strike adb fallback.
 
+## License
+
+MIT — build with this module freely (fork, ship, reuse). The macOS half of
+the feature is distributed separately: download Gauge (with its TBNetBridge
+plugin) from https://secondsee.com/downloads/gauge — both halves are required
+for the wire-uplink to work end to end. See the LICENSE file for the full
+terms.
+
 ## References
 
 - War story (both halves, measured): [Series 9, part 5 — the cable
