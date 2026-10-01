@@ -21,10 +21,19 @@ USB gadget (dwc3 or compatible UDC) and Android configfs should work; the
 Pixel 10a is the verified reference.
 
 Measured (Series 9, part 5 — the cable war):
-- ~400 Mbps internet over the wire, ~460 Mbps wire-only; the ceiling is the
-  phone's USB-NCM gadget (no hardware checksum offload), not the cable.
+- ~400 Mbps single-stream internet over the wire, ~460 Mbps wire-only; the
+  ceiling is the phone's USB-NCM gadget (no hardware checksum offload), not
+  the cable. Multi-connection fan-out (fast.com's parallel streams) measures
+  **610 Mbps** — the practical ceiling is higher than single-stream tests
+  suggested (see the repo's measured-results issue).
 - Auto-heal on replug: ~12 s re-arm, lease + validation restored without
   intervention.
+- Ecosystem effect, measured: every auto-heal re-arm rotates Android's
+  private MAC, so the hub's DHCP lease book accumulates stale `Pixel-10a`
+  leases. The TBNetBridge plugin now sweeps lease liveness concurrently
+  (gauge PR #78: cycle cost capped at one ping timeout total instead of one
+  per dead lease), so lease-book bloat no longer stalls the gateway's
+  30 s cycle.
 
 ## What it does
 
@@ -118,7 +127,9 @@ service on the USB port).
 - v0.3.0 — multi-device groundwork: `diagnose.sh` gate checker,
   sysfs-first UDC discovery, configfs-mount fallback, per-device
   `wire-uplink.conf` overrides, INTERVAL config, `package.sh` zip builder.
-  Verified reload on the Pixel 10a.
+  Verified reload on the Pixel 10a. (Later measured: fast.com's
+  multi-connection fan-out reaches **610 Mbps** over the wire — see the
+  measured-results issue.)
 - v0.2.0 — portability: auto-detect UDC/gadget/config; self-owned NCM
   instance (`ncm.wire`) created on arm; qmult set+verified by the script;
   bind now verified (silent no-op caught); fixed the log's stale-name
