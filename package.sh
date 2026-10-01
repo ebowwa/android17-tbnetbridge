@@ -10,7 +10,7 @@ VERSION=$(grep '^version=' module.prop | cut -d= -f2)
 OUT=../dist/android17-tbnetbridge-${VERSION}.zip
 mkdir -p ../dist
 
-FILES="module.prop service.sh wire-uplink.conf.example README.md diagnose.sh"
+FILES="module.prop service.sh wire-uplink.conf.example README.md diagnose.sh LICENSE CONTRIBUTING.md"
 
 # validate required entries
 for k in id name version versionCode author description; do
